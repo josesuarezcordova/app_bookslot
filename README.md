@@ -1,50 +1,62 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# BMI Appointment Project
 
-## Get started
+## Prerequisites
+- Node.js (v16+ recommended)
+- npm
+- Expo CLI (`npm install -g expo-cli`)
+- SQLite3
 
-1. Install dependencies
-
+## Backend Setup
+1. Navigate to the backend folder:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
    ```bash
    npm install
    ```
+3. Create a `.env` file in `backend/` and add your Stripe secret key:
+   ```env
+   STRIPE_SECRET_KEY=sk_test_...
+   ```
+4. Start the backend server:
+   ```bash
+   node server.js
+   ```
 
-2. Start the app
-
+## Frontend Setup
+1. Navigate to the frontend folder:
+   ```bash
+   cd ../my-bmi-app
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   npx expo install
+   ```
+3. Start the Expo app:
    ```bash
    npx expo start
    ```
+4. Open the app in Expo Go or a simulator. Make sure your device is on the same network as your backend server.
 
-In the output, you'll find options to open the app in a
+## Database Setup
+1. Navigate to the storage folder:
+   ```bash
+   cd ../backend/storage
+   ```
+2. Open the SQLite shell:
+   ```bash
+   sqlite3 bmi_database.db
+   ```
+3. (Optional) Insert slots:
+   ```sql
+   INSERT INTO slots (time) VALUES ('2025-11-27 09:00');
+   -- Repeat for more slots
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Notes
+- Ensure `.env` is not committed to git (it's in `.gitignore`).
+- Update API URLs in the frontend to match your backend IP address.
+- Rotate your Stripe API key if it was ever committed.
