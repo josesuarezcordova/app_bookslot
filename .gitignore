@@ -1,6 +1,13 @@
 # Node
 node_modules/
 
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+dist/
+web-build/
+expo-env.d.ts
+
 # Expo
 .expo/
 
@@ -9,19 +16,23 @@ node_modules/
 
 # Logs
 *.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
 
 # OS
 .DS_Store
 Thumbs.db
+*.pem
 
 # Environment
 .env
+.env*.local
 
 # npm
 package-lock.json
 
 # Build
-/dist/
 /build/
 
 # SQLite DB
@@ -31,15 +42,15 @@ package-lock.json
 # Misc
 .idea/
 *.swp
+*.tgz
+*.orig.*
+app-example
 
 # Expo Web
 web-build/
 
 # Coverage
 coverage/
-
-# Others
-*.tgz
 
 # Python
 __pycache__/
@@ -50,3 +61,21 @@ __pycache__/
 
 # Linux
 *~
+
+# Native
+.kotlin/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# typescript
+*.tsbuildinfo
+
+# generated native folders
+/ios
+/android
