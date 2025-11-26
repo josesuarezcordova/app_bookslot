@@ -1,0 +1,52 @@
+# Node
+node_modules/
+
+# Expo
+.expo/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# npm
+package-lock.json
+
+# Build
+/dist/
+/build/
+
+# SQLite DB
+*.sqlite
+*.db
+
+# Misc
+.idea/
+*.swp
+
+# Expo Web
+web-build/
+
+# Coverage
+coverage/
+
+# Others
+*.tgz
+
+# Python
+__pycache__/
+*.pyc
+
+# Mac
+*.DS_Store
+
+# Linux
+*~
