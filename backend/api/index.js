@@ -3,7 +3,7 @@ const express = require('express');
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY); 
 const router = express.Router();
-const { getAvailableSlots, bookAppointment, addSlot } = require('../storage/db');
+const { db, getAvailableSlots, bookAppointment, addSlot } = require('../storage/db');
 
 console.log("Stripe Secret Key:", process.env.STRIPE_SECRET_KEY);
 console.log("API server started");
@@ -14,20 +14,28 @@ router.get('/appointments', (req, res) => {
             res.status(500).json({ error: err.message });
             return;
         }
-        res.json({ slots: rows });
+        // Filter out booked slots (assuming slot.booked is 1 for booked, 0 for available)
+        const availableSlots = rows.filter(slot => !slot.booked);
+        res.json({ slots: availableSlots });
     });
 });
 
 router.post('/book', (req, res) => {
     const { user_name, user_email, slot_id } = req.body;
     console.log(req.body);
-    bookAppointment(user_name, user_email, slot_id, function(err) {
+    bookAppointment(user_name, user_email, slot_id, async function(err) {
         if (err) {
             console.error(err);
             res.status(500).json({ error: err.message });
             return;
         }
-        res.json({ message: 'Appointment booked successfully' });
+        // Mark slot as booked in the DB
+        try {
+            await db.run('UPDATE slots SET booked = 1 WHERE id = ?', [slot_id]);
+            res.json({ message: 'Appointment booked successfully' });
+        } catch (updateErr) {
+            res.status(500).json({ error: updateErr.message });
+        }
     });
 });
 
