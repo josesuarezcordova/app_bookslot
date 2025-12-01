@@ -50,10 +50,13 @@
    ```bash
    sqlite3 bmi_database.db
    ```
-3. (Optional) Insert slots:
+3. Insert example slots (run these in the SQLite shell to add initial data):
    ```sql
-   INSERT INTO slots (time) VALUES ('2025-11-27 09:00');
-   -- Repeat for more slots
+   INSERT INTO slots (time) VALUES ('2025-12-01 09:00');
+   INSERT INTO slots (time) VALUES ('2025-12-01 10:00');
+   INSERT INTO slots (time) VALUES ('2025-12-01 11:00');
+   INSERT INTO slots (time) VALUES ('2025-12-01 14:00');
+   INSERT INTO slots (time) VALUES ('2025-12-01 15:30');
    ```
 
 ## Notes
