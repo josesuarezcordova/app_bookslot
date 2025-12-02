@@ -39,25 +39,8 @@ router.post('/book', (req, res) => {
     });
 });
 
-router.post('/pay', async(req, res) => {
-    // Payment processing logic here
-    const {amount} = req.body;
-    console.log("data ", req.body);
-    try{
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: parseInt(amount,10),
-            currency: 'usd',
-            payment_method_types: ['card'],
-        });
-        res.json({clientSecret: paymentIntent.client_secret } );
-    } catch (error){
-        console.error("Payment Error: ", error);
-        res.status(500).json({ error: error.message })   
-    }
-});
-
 // In backend/api/index.js
-router.post('/create-payment-intent', async (req, res) => {
+router.post('/pay', async (req, res) => {
   const { amount } = req.body;
   try {
     const paymentIntent = await stripe.paymentIntents.create({
