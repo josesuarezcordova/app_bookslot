@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-const path = require('path');
+const path = require('node:path');
 const db = new sqlite3.Database(path.join(__dirname, 'bmi_database.db'), (err) => {
   if (err) {
     console.error('Could not connect to database', err);
